@@ -26,11 +26,10 @@ func main() {
 					Name: "ticker",
 					Action: func(c *cli.Context) error {
 						// Connect to influx database
-						var username, password string
 						influxClient, err := client.NewHTTPClient(client.HTTPConfig{
 							Addr:     c.String("influx-url"),
-							Username: username,
-							Password: password,
+							Username: c.String("influx-user"),
+							Password: c.String("influx-pass"),
 						})
 						if err != nil {
 							log.Fatalf("Could not connect to database, err: %v", err)
